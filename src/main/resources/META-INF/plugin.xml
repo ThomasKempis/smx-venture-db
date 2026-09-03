@@ -1,0 +1,45 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>mx.jars.venture.smx-venture-db</id>
+
+    <!-- Public plugin name should be written in Title Case.
+     Guidelines: https://plugins.jetbrains.com/docs/marketplace/best-practices-for-listing.html#plugin-name -->
+    <name>SMX Venture DB</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor>JARS</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/best-practices-for-listing.html#plugin-description -->
+    <description><![CDATA[
+        Herramientas para asistir el trabajo con la base de datos de SMX Venture.
+        ]]></description>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <resource-bundle>messages.MyMessageBundle</resource-bundle>
+
+    <!-- Extensions defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow id="SMX Venture DB" factoryClass="mx.jars.venture.MyToolWindowFactory"
+                    icon="AllIcons.Toolwindows.ToolWindowPalette"/>
+        <fileEditorProvider implementation="mx.jars.venture.dataPreview.SmxDataPreviewEditorProvider"/>
+        <fileEditorProvider implementation="mx.jars.venture.source.SmxObjectSourceEditorProvider"/>
+        <editorTabColorProvider implementation="mx.jars.venture.source.SmxEditorTabColorProvider"/>
+    </extensions>
+
+    <actions>
+        <group id="SmxVentureDb.Menu" text="SMX Venture DB" popup="true">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+            <action id="SmxVentureDb.OpenToolWindow"
+                    class="mx.jars.venture.actions.SmxOpenToolWindowAction"
+                    text="Abrir Panel"
+                    description="Abre el panel de SMX Venture DB"/>
+        </group>
+    </actions>
+
+</idea-plugin>
